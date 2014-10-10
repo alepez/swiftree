@@ -21,4 +21,8 @@ Node::~Node() {
 
 }
 
+NodePtr Node::getChild(const std::string& path) const {
+	return NodePtr(new Node(pt_.get_child(path)));
+}
+
 } /* namespace swiftree */

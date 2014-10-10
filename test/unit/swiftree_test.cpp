@@ -13,5 +13,5 @@ using namespace ::swiftree;
 using namespace ::testing;
 
 TEST(SwiftreeLibrary, CanLoadFromXml) {
-	ASSERT_NO_THROW(loadXml("test.xml"));
+	ASSERT_NO_THROW(fromXml("test.xml"));
 }

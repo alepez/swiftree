@@ -91,9 +91,6 @@ $(HEADERS_DIST_DIR)/%.h: $(SRC_DIR)/%.h
 
 libraries: $(LIB_STATIC) $(LIB_SHARED)
 
-## build libraries, tests and documentaion
-all: libraries $(UNIT_TESTS_EXE)
-
 ## build libraries executables and miscellaneus
 dist: libraries $(HEADERS_DIST)
 	@echo $(HEADERS_DIST)
@@ -136,3 +133,7 @@ unit_test: $(UNIT_TESTS_EXE)
 	cd test/env && ../../$(UNIT_TESTS_EXE)
 
 test: unit_test
+
+
+## build libraries, tests and documentaion
+all: libraries $(UNIT_TESTS_EXE)

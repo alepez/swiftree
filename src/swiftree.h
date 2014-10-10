@@ -11,7 +11,7 @@
 
 namespace swiftree {
 
-NodePtr loadXml(const std::string& filename);
+NodePtr fromXml(const std::string& filename);
 
 } /* namespace swiftree */
 
