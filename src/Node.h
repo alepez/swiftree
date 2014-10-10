@@ -36,14 +36,32 @@ public:
 	 */
 	Node& operator=(const Node& node);
 	/**
-	 * Explicit value getter
+	 * Explicit direct value getter
+	 */
+	template<class Type>
+	Type to() const {
+		return pt_.get_value<Type>();
+	}
+	/**
+	 * Explicit direct value getter with default value
+	 */
+	template<class Type>
+	Type to(Type defaultValue) const {
+		try {
+			return pt_.get_value<Type>();
+		} catch (...) {
+			return defaultValue;
+		}
+	}
+	/**
+	 * Explicit child value getter
 	 */
 	template<class Type>
 	Type value(const std::string& path) const {
 		return pt_.get<Type>(path);
 	}
 	/**
-	 * Explicit value getter with default value
+	 * Explicit child value getter with default value
 	 */
 	template<class Type>
 	Type value(const std::string& path, Type defaultValue) const {

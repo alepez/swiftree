@@ -60,3 +60,58 @@ TEST_F(ANode, CanGetNestedChildWithBrackets) {
 	std::string value = node_["child"]["string"];
 	ASSERT_EQ("test", value);
 }
+
+TEST_F(ANode, CanBeUsedInInitializationList) {
+	class A {
+	public:
+		A(const Node& node) :
+						number_(node["int"]) {
+		}
+		int number_;
+	};
+	A a(node_);
+	ASSERT_EQ(42, a.number_);
+}
+
+TEST_F(ANode, CanBeExplicitlyCastedToAString) {
+	class A {
+	public:
+		A(const Node& node) :
+						str_(node["child"]["string"].to<std::string>()) {
+		}
+		std::string str_;
+	};
+	A a(node_);
+	ASSERT_EQ("test", a.str_);
+}
+
+TEST_F(ANode, CanBeExplicitlyCastedToATypeDeterminedByDefaultValue) {
+	class A {
+	public:
+		A(const Node& node) :
+						value_(node["int"].to(5)) {
+		}
+		float value_;
+	};
+	A a(node_);
+	ASSERT_EQ(42, a.value_);
+}
+
+TEST_F(ANode, CanBePassedToOtherObjects) {
+	class A {
+	public:
+		A(const Node& node) :
+						str_(node["number43"]) {
+		}
+		int str_;
+	};
+	class B {
+	public:
+		B(const Node& node) :
+						a_(node["child"]) {
+		}
+		A a_;
+	};
+	B b(node_);
+	ASSERT_EQ(43, b.a_.str_);
+}

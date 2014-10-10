@@ -3,5 +3,6 @@
 	<int>42</int>
 	<child>
 		<string>test</string>
+		<number43>43</number43>
 	</child>
 </root>
