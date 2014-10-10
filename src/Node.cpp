@@ -21,8 +21,22 @@ Node::~Node() {
 
 }
 
-NodePtr Node::getChild(const std::string& path) const {
-	return NodePtr(new Node(pt_.get_child(path)));
+Node::Node(const Node& node) :
+				pt_(node.pt_) {
+
+}
+
+Node& Node::operator =(const Node& node) {
+	pt_ = boost::property_tree::ptree(node.pt_);
+	return *this;
+}
+
+Node Node::child(const std::string& path) const {
+	return Node(pt_.get_child(path));
+}
+
+Node Node::operator[](const std::string& path) const {
+	return this->child(path);
 }
 
 } /* namespace swiftree */

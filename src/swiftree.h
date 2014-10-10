@@ -7,11 +7,11 @@
 #ifndef swiftree_SWIFTREE_H_
 #define swiftree_SWIFTREE_H_
 
-#include "swiftree_fwd.h"
+#include "Node.h"
 
 namespace swiftree {
 
-NodePtr fromXml(const std::string& filename);
+Node fromXml(const std::string& filename);
 
 } /* namespace swiftree */
 

@@ -1,4 +1,7 @@
 <root>
 	<float>3.14</float>
 	<int>42</int>
+	<child>
+		<string>test</string>
+	</child>
 </root>

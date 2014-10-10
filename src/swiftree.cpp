@@ -14,10 +14,10 @@ using namespace boost::property_tree;
 
 namespace swiftree {
 
-NodePtr fromXml(const std::string& filename) {
+Node fromXml(const std::string& filename) {
 	ptree pt;
 	xml_parser::read_xml(filename, pt);
-	return NodePtr(new Node(pt));
+	return Node(pt);
 }
 
 } /* namespace swiftree */

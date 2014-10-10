@@ -15,17 +15,61 @@ namespace swiftree {
 
 class Node {
 public:
+	/**
+	 * Default constructor
+	 */
 	Node();
+	/**
+	 * Copy constructor
+	 */
+	Node(const Node& node);
+	/**
+	 * Construct from boost property tree
+	 */
 	Node(const boost::property_tree::ptree& pt);
+	/**
+	 * Destructor
+	 */
 	virtual ~Node();
+	/**
+	 * Copy operator
+	 */
+	Node& operator=(const Node& node);
+	/**
+	 * Explicit value getter
+	 */
 	template<class Type>
-	Type get(const std::string& path) const {
+	Type value(const std::string& path) const {
 		return pt_.get<Type>(path);
 	}
-	NodePtr getChild(const std::string& path) const;
-
+	/**
+	 * Explicit value getter with default value
+	 */
+	template<class Type>
+	Type value(const std::string& path, Type defaultValue) const {
+		try {
+			return pt_.get<Type>(path);
+		} catch (...) {
+			return defaultValue;
+		}
+	}
+	/**
+	 * Value getter
+	 */
+	template<class Type>
+	operator Type() const {
+		return pt_.get_value<Type>();
+	}
+	/**
+	 * Explicit child getter
+	 */
+	Node child(const std::string& path) const;
+	/**
+	 * Child getter
+	 */
+	Node operator[](const std::string& path) const;
 private:
-	const boost::property_tree::ptree pt_;
+	boost::property_tree::ptree pt_;
 };
 
 } /* namespace swiftree */
