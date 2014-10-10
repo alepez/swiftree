@@ -9,12 +9,16 @@
 namespace swiftree {
 
 Node::Node() {
-	// TODO Auto-generated constructor stub
+
+}
+
+Node::Node(const boost::property_tree::ptree& pt) :
+				pt_(pt) {
 
 }
 
 Node::~Node() {
-	// TODO Auto-generated destructor stub
+
 }
 
 } /* namespace swiftree */

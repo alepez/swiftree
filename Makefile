@@ -125,8 +125,8 @@ UNIT_TESTS_EXE := $(UNIT_TESTS_BUILD_DIR)/test
 
 $(UNIT_TESTS_BUILD_DIR)/%.o: $(UNIT_TESTS_DIR)/%.cpp
 	mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
-	$(CXX) $(CXXFLAGS) -MF$(@:%.o=%.d) -MG -MM -MP -MT$(@:%.o=%.d) -MT$@ $<
+	$(CXX) $(CXXFLAGS) -I$(SRC_DIR) -c -o $@ $<
+	$(CXX) $(CXXFLAGS) -I$(SRC_DIR) -MF$(@:%.o=%.d) -MG -MM -MP -MT$(@:%.o=%.d) -MT$@ $<
 
 $(UNIT_TESTS_EXE): $(UNIT_TESTS_OBJ) $(CXX_OBJS)
 	$(CXX) -o $@ -lgtest -lgmock $(LDFLAGS) $(UNIT_TESTS_OBJ) $(CXX_OBJS)
