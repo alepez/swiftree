@@ -1,0 +1,10 @@
+## eclipse
+.project
+.cproject
+/.settings
+
+## automatically generated files
+/build
+/dist
+/tmp
+/doc/html
