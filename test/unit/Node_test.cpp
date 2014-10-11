@@ -14,7 +14,11 @@ using namespace ::testing;
 
 class ANode: public Test {
 public:
-	Node node_ = fromXml("test.xml").child("root");
+	ANode() :
+					node_(fromXml("test.xml").child("root")) {
+
+	}
+	Node node_;
 };
 
 TEST_F(ANode, CanGetChildByExplicitGetter) {
@@ -66,7 +70,6 @@ TEST_F(ANode, CanGetNestedChildWithBrackets) {
 	std::string value = node_["child"]["string"];
 	ASSERT_EQ("test", value);
 }
-
 
 TEST_F(ANode, CanBeCastedToAFloat) {
 	Node n = node_["float"];
