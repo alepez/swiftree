@@ -44,8 +44,7 @@ WARNINGS := -pedantic -Wall -Wextra -c -fmessage-length=0
 ifeq ($(DEBUG), 1)
 	DEFINES += DEBUG
 	COMMON_FLAGS += -g3 -O0
-	COMMON_FLAGS += -p -pg -ftest-coverage -fprofile-arcs --coverage
-	LIBRARIES += gcov
+	COMMON_FLAGS += -p -pg --coverage
 	LDFLAGS += --coverage
 else
 	DEFINES += NDEBUG

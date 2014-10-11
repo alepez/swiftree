@@ -30,7 +30,7 @@ public:
 	/**
 	 * Destructor
 	 */
-	virtual ~Node();
+	~Node();
 	/**
 	 * Copy operator
 	 */

@@ -22,7 +22,6 @@ TEST_F(ANode, CanGetChildByExplicitGetter) {
 	ASSERT_NO_THROW(node_.child("child"));
 }
 
-
 TEST_F(ANode, CanBeCopied) {
 	Node a;
 	ASSERT_NO_THROW(a = node_);
@@ -46,12 +45,13 @@ TEST_F(ANode, CanGetIntByExplicitGetter) {
 }
 
 TEST_F(ANode, CanGetDefaultInt) {
-	auto value = node_.value<int>("undefined", 42);
-	ASSERT_EQ(42, value);
+	ASSERT_EQ(42, node_.value("undefined", 42));
 }
 
 TEST_F(ANode, ThrowsIfNotDefinedAndWithoutDefault) {
 	ASSERT_ANY_THROW(node_.value<int>("undefined"));
+	ASSERT_ANY_THROW(node_["undefined"].to<int>());
+	ASSERT_ANY_THROW(node_["undefined"]);
 }
 
 TEST_F(ANode, CanGetChildWithBrackets) {
@@ -66,6 +66,13 @@ TEST_F(ANode, CanGetFloatWithBrackets) {
 TEST_F(ANode, CanGetNestedChildWithBrackets) {
 	std::string value = node_["child"]["string"];
 	ASSERT_EQ("test", value);
+}
+
+
+TEST_F(ANode, CanBeCastedToAFloat) {
+	Node n = node_["float"];
+	float value = n;
+	ASSERT_FLOAT_EQ(3.14, value);
 }
 
 TEST_F(ANode, CanBeUsedInInitializationList) {
@@ -121,4 +128,12 @@ TEST_F(ANode, CanBePassedToOtherObjects) {
 	};
 	B b(node_);
 	ASSERT_EQ(43, b.a_.str_);
+}
+
+TEST_F(ANode, CanDynamicallyInstantiated) {
+	Node* a = new Node(node_);
+	Node* b = new Node(node_);
+	*a = *b;
+	delete a;
+	delete b;
 }
