@@ -53,7 +53,7 @@ endif
 
 COMMON_FLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir))
 COMMON_FLAGS += $(foreach define,$(DEFINES),-D$(define))
-EXTRA_FLAGS += -fPIC -std=c++11
+EXTRA_FLAGS += -fPIC -std=c++0x
 
 CXXFLAGS = $(EXTRA_FLAGS) $(COMMON_FLAGS) $(WARNINGS)
 
