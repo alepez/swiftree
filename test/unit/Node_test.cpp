@@ -22,6 +22,13 @@ TEST_F(ANode, CanGetChildByExplicitGetter) {
 	ASSERT_NO_THROW(node_.child("child"));
 }
 
+
+TEST_F(ANode, CanBeCopied) {
+	Node a;
+	ASSERT_NO_THROW(a = node_);
+	ASSERT_NO_THROW(Node b(a));
+}
+
 TEST_F(ANode, CanGetStringByExplicitGetter) {
 	Node child = node_.child("child");
 	auto value = child.value<std::string>("string");
