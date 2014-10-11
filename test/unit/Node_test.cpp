@@ -14,7 +14,7 @@ using namespace ::testing;
 
 class ANode: public Test {
 public:
-	Node node_ { fromXml("test.xml").child("root") };
+	Node node_ = fromXml("test.xml").child("root");
 };
 
 TEST_F(ANode, CanGetChildByExplicitGetter) {
