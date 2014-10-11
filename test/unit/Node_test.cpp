@@ -5,7 +5,6 @@
  */
 
 #include <gtest/gtest.h>
-#include <gmock/gmock.h>
 
 #include "Node.h"
 #include "swiftree.h"
