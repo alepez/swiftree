@@ -42,9 +42,14 @@ WARNINGS := -pedantic -Wall -Wextra -c -fmessage-length=0
 
 ## COMPILER FLAGS (DEBUG/RELEASE)
 ifeq ($(DEBUG), 1)
-	COMMON_FLAGS += -DDEBUG -g3 -O0
+	DEFINES += DEBUG
+	COMMON_FLAGS += -g3 -O0
+	COMMON_FLAGS += -p -pg -ftest-coverage -fprofile-arcs --coverage
+	LIBRARIES += gcov
+	LDFLAGS += --coverage
 else
-	COMMON_FLAGS += -DNDEBUG -O2
+	DEFINES += NDEBUG
+	COMMON_FLAGS +=-O2
 endif
 
 COMMON_FLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir))
@@ -134,6 +139,10 @@ unit_test: $(UNIT_TESTS_EXE)
 
 test: unit_test
 
+coverage: test
+	lcov -b . --capture --directory . --output-file build/coverage.info
+	genhtml build/coverage.info --output-directory build/coverage
 
+###############################################################################
 ## build libraries, tests and documentaion
 all: libraries $(UNIT_TESTS_EXE)
