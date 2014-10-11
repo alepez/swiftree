@@ -39,4 +39,8 @@ Node Node::operator[](const std::string& path) const {
 	return this->child(path);
 }
 
+Node Node::operator[](const char* path) const {
+	return this->child(path);
+}
+
 } /* namespace swiftree */

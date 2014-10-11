@@ -86,6 +86,7 @@ public:
 	 * Child getter
 	 */
 	Node operator[](const std::string& path) const;
+	Node operator[](const char* path) const;
 private:
 	boost::property_tree::ptree pt_;
 };
