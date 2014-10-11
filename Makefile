@@ -130,7 +130,7 @@ $(UNIT_TESTS_BUILD_DIR)/%.o: $(UNIT_TESTS_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -I$(SRC_DIR) -MF$(@:%.o=%.d) -MG -MM -MP -MT$(@:%.o=%.d) -MT$@ $<
 
 $(UNIT_TESTS_EXE): $(UNIT_TESTS_OBJ) $(CXX_OBJS)
-	$(CXX) -o $@ -lgtest $(LDFLAGS) $(UNIT_TESTS_OBJ) $(CXX_OBJS)
+	$(CXX) -o $@ $(CXX_OBJS) -lgtest $(LDFLAGS) $(UNIT_TESTS_OBJ)
 
 unit_test: $(UNIT_TESTS_EXE)
 	@echo $(wildcard $(UNIT_TESTS_BUILD_DIR)/**/*.d)
