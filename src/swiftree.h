@@ -12,6 +12,7 @@
 namespace swiftree {
 
 Node fromXml(const std::string& filename);
+Node fromJson(const std::string& filename);
 
 } /* namespace swiftree */
 

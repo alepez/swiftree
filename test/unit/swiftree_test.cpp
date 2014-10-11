@@ -14,3 +14,7 @@ using namespace ::testing;
 TEST(SwiftreeLibrary, CanLoadFromXml) {
 	ASSERT_NO_THROW(fromXml("test.xml"));
 }
+
+TEST(SwiftreeLibrary, CanLoadFromJson) {
+	ASSERT_NO_THROW(fromJson("test.json"));
+}

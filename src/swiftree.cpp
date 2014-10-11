@@ -9,6 +9,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
+#include <boost/property_tree/json_parser.hpp>
 
 using namespace boost::property_tree;
 
@@ -17,6 +18,12 @@ namespace swiftree {
 Node fromXml(const std::string& filename) {
 	ptree pt;
 	xml_parser::read_xml(filename, pt);
+	return Node(pt);
+}
+
+Node fromJson(const std::string& filename) {
+	ptree pt;
+	json_parser::read_json(filename, pt);
 	return Node(pt);
 }
 

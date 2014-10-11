@@ -1,6 +1,6 @@
-# swiftree
+# swiftree [![travis build](http://img.shields.io/travis/alessandro-pezzato/swiftree.svg?style=flat)](https://travis-ci.org/alessandro-pezzato/swiftree)
 
-Provide a concise way to access data inside xml and json from C++.
+Provides a concise way to access data inside xml and json from C++.
 
 ## Example:
 
