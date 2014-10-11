@@ -6,15 +6,10 @@ before_install:
  - sudo apt-get update
  - sudo apt-get install libgtest-dev
  - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
-before_script:
- - pwd
- - cd samples/STL/
- - pwd
- - which sh
 script: "make test"
 notifications:
   recipients:
     - alessandro.pezzato@gmail.com
   email:
     on_success: change
-    on_failure: always
+    on_failure: change
