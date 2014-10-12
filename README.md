@@ -50,3 +50,24 @@ Even with default value:
 
 	auto b = a.to(3.14);
 
+A special "reference" node can load data from another file (or part of it):
+
+File bla.xml:
+
+	<foo>
+		<bar>
+			<dee>ref:xml:guu.xml</dee>
+			<hii>ref:xml:guu.xml:meh</hii>
+		</bar>
+	</foo>
+
+File guu.xml:
+
+	<meh>
+		<ooo>ciao!</ooo>
+	</meh>
+
+the node loaded from guu.xml is attached to "foo.bar.dee" in the node loaded by bla.xml:
+
+	std::string greeting = fromXml("bla.xml")["foo"]["bar"]["dee"]["meh"]["ooo"];
+	std::string greeting2 = fromXml("bla.xml")["foo"]["bar"]["hii"]["ooo"];
