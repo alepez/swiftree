@@ -140,10 +140,18 @@ TEST_F(ANode, CanDynamicallyInstantiated) {
 	delete b;
 }
 
-
-
 TEST_F(ANode, CanGetANodeFromReference) {
 	Node refNode = node_["child"]["reference"];
-	ASSERT_EQ("foo", refNode["one"]["two"].to<std::string>());
+	ASSERT_EQ("foo", refNode["two"].to<std::string>());
+}
+
+TEST_F(ANode, CanGetAnXmlNodeFromReference) {
+	Node refNode = node_["child"]["referenceXml"];
+	ASSERT_EQ(42, refNode["int"].to<int>());
+}
+
+TEST_F(ANode, CanGetAnXmlNodeFromReferenceWithoutPath) {
+	Node refNode = node_["child"]["referenceWithoutPath"];
+	ASSERT_EQ(42, refNode["root"]["int"].to<int>());
 }
 

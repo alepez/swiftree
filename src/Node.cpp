@@ -24,18 +24,17 @@ Node::~Node() {
 
 Node::Node(const Node& node) :
 				pt_(node.pt_) {
-
 }
 
 Node& Node::operator =(const Node& node) {
-	pt_ = boost::property_tree::ptree(node.pt_);
+	pt_ = node.pt_;
 	return *this;
 }
 
 Node Node::child(const std::string& path) const {
-	std::string refPath = pt_.get_value<std::string>(path);
-	if (Reference::isReference(refPath)) {
-		return Reference(refPath);
+	std::string strValue = pt_.get<std::string>(path);
+	if (Reference::isReference(strValue)) {
+		return Reference(strValue);
 	}
 	return Node(pt_.get_child(path));
 }

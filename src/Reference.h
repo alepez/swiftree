@@ -8,6 +8,8 @@
 #define swiftree_REFERENCE_H_
 
 #include "swiftree_fwd.h"
+#include "Node.h"
+
 #include <string>
 
 namespace swiftree {
@@ -18,9 +20,7 @@ public:
 	Reference(const std::string& refPath);
 	operator Node() const;
 private:
-	FileType fileType_;
-	std::string fileName_;
-	std::string treePath_;
+	Node node_;
 };
 
 } /* namespace swiftree */

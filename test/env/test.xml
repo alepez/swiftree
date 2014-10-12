@@ -1,10 +1,12 @@
 <root>
+	<name>xml test</name>
 	<float>3.14</float>
 	<int>42</int>
 	<child>
 		<string>test</string>
 		<number43>43</number43>
 		<reference>ref:json:test.json:one</reference>
-		<reference2>ref:json:test.json</reference2>
+		<referenceXml>ref:xml:test.xml:root</referenceXml>
+		<referenceWithoutPath>ref:xml:test.xml</referenceWithoutPath>
 	</child>
 </root>

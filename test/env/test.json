@@ -1,4 +1,5 @@
 {
+  "name": "test json",
   "test": "test",
   "one": {
     "two": "foo"

@@ -24,32 +24,23 @@ bool Reference::isReference(const std::string& refPath) {
 Reference::Reference(const std::string& refPath) {
 	std::vector<std::string> list;
 	split(list, refPath, is_any_of(":"));
-	if (list[1] == "xml") {
-		fileType_ = FILETYPE_XML;
+	std::string fileType = list[1];
+	std::string fileName = list[2];
+	if (fileType == "xml") {
+		node_ = fromXml(fileName);
+	} else if (fileType == "json") {
+		node_ = fromJson(fileName);
+	} else {
+		throw std::runtime_error(list[1] + " is not a valid filetype");
 	}
-	if (list[1] == "json") {
-		fileType_ = FILETYPE_JSON;
-	}
-	fileName_ = list[2];
 	if (list.size() > 3) {
-		treePath_ = list[3];
+		std::string treePath = list[3];
+		node_ = node_.child(treePath);
 	}
 }
 
 Reference::operator Node() const {
-	Node node;
-	switch (fileType_) {
-	case FILETYPE_XML:
-		node = fromXml(fileName_);
-		break;
-	case FILETYPE_JSON:
-		node = fromJson(fileName_);
-		break;
-	}
-	if (treePath_.empty()) {
-		return node;
-	}
-	return node.child(treePath_);
+	return node_;
 }
 
 } /* namespace swiftree */
