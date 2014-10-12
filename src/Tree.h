@@ -80,12 +80,24 @@ public:
 	}
 	/**
 	 * Explicit child getter
+	 *
+	 * \param path a dot separated path
+	 * \return a Tree from the specified path
 	 */
 	Tree child(const std::string& path) const;
 	/**
 	 * Child getter
+	 *
+	 * \param path a dot separated path
+	 * \return a Tree from the specified path
 	 */
 	Tree operator[](const std::string& path) const;
+	/**
+	 * Child getter
+	 *
+	 * \param path a dot separated path
+	 * \return a Tree from the specified path
+	 */
 	Tree operator[](const char* path) const;
 private:
 	boost::property_tree::ptree pt_;
