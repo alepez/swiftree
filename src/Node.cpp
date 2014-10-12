@@ -5,6 +5,7 @@
  */
 
 #include "Node.h"
+#include "Reference.h"
 
 namespace swiftree {
 
@@ -32,6 +33,10 @@ Node& Node::operator =(const Node& node) {
 }
 
 Node Node::child(const std::string& path) const {
+	std::string refPath = pt_.get_value<std::string>(path);
+	if (Reference::isReference(refPath)) {
+		return Reference(refPath);
+	}
 	return Node(pt_.get_child(path));
 }
 

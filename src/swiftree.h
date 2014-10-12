@@ -8,6 +8,7 @@
 #define swiftree_SWIFTREE_H_
 
 #include "Node.h"
+#include <string>
 
 namespace swiftree {
 

@@ -9,6 +9,11 @@
 
 namespace swiftree {
 
+enum FileType {
+	FILETYPE_XML,
+	FILETYPE_JSON
+};
+
 class Node;
 
 } /* namespace swiftree */

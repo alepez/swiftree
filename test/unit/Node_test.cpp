@@ -139,3 +139,11 @@ TEST_F(ANode, CanDynamicallyInstantiated) {
 	delete a;
 	delete b;
 }
+
+
+
+TEST_F(ANode, CanGetANodeFromReference) {
+	Node refNode = node_["child"]["reference"];
+	ASSERT_EQ("foo", refNode["one"]["two"].to<std::string>());
+}
+

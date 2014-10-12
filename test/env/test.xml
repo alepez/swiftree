@@ -4,5 +4,7 @@
 	<child>
 		<string>test</string>
 		<number43>43</number43>
+		<reference>ref:json:test.json:one</reference>
+		<reference2>ref:json:test.json</reference2>
 	</child>
 </root>

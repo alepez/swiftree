@@ -1,3 +1,6 @@
 {
-  "test": "test"
+  "test": "test",
+  "one": {
+    "two": "foo"
+  }
 }
