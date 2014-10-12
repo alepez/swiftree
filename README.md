@@ -4,7 +4,7 @@ Provides a concise way to access data inside xml and json from C++.
 
 ## Example:
 
-    Node cfg = fromXml("configuration.xml");
+    Tree cfg = fromXml("configuration.xml");
 
 Can access data directly with a dot-separated path:
 
@@ -17,32 +17,32 @@ Or accessing nested elements using the brackets operator:
 Casting to the right type is done automatically, the type is
 determined by the variable to which the value is assigned.
 
-For examples of what you can do, see `test/unit/Node_test.cpp`
+For examples of what you can do, see `test/unit/Tree_test.cpp`
 
-You can get the child node of a node by its name:
+You can get the child tree of a tree by its name:
 
-	Node child = node.child("childName");
+	Tree child = tree.child("childName");
 
 The same can be achieved with the more concise operator[]:
 
-	Node child = node["childName"];
+	Tree child = tree["childName"];
 
 You can explicitly get a value from a child 
 	
-	auto speed = node.value<float>("speed");
-	auto direction = node.value<int>("direction");
+	auto speed = tree.value<float>("speed");
+	auto direction = tree.value<int>("direction");
 
-You can set a default value that is returned if the child node is undefined.
+You can set a default value that is returned if the child tree is undefined.
 The type is inferred by the default value.
 
-	auto theAnswer = node.value("theAnswer", 42));
+	auto theAnswer = tree.value("theAnswer", 42));
 
-Node is automatically casted to any type:
+Tree is automatically casted to any type:
 
-	Node a = node["speed"];
+	Tree a = tree["speed"];
 	float value = a;
 
-Node can be explicitly casted to any type: 
+Tree can be explicitly casted to any type: 
 
 	auto b = a.to<float>();
 
@@ -50,7 +50,7 @@ Even with default value:
 
 	auto b = a.to(3.14);
 
-A special "reference" node can load data from another file (or part of it):
+A special "reference" tree can load data from another file (or part of it):
 
 File bla.xml:
 
@@ -67,7 +67,7 @@ File guu.xml:
 		<ooo>ciao!</ooo>
 	</meh>
 
-the node loaded from guu.xml is attached to "foo.bar.dee" in the node loaded by bla.xml:
+the tree loaded from guu.xml is attached to "foo.bar.dee" in the tree loaded by bla.xml:
 
 	std::string greeting = fromXml("bla.xml")["foo"]["bar"]["dee"]["meh"]["ooo"];
 	std::string greeting2 = fromXml("bla.xml")["foo"]["bar"]["hii"]["ooo"];

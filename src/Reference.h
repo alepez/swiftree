@@ -8,7 +8,7 @@
 #define swiftree_REFERENCE_H_
 
 #include "swiftree_fwd.h"
-#include "Node.h"
+#include "Tree.h"
 
 #include <string>
 
@@ -18,9 +18,9 @@ class Reference {
 public:
 	static bool isReference(const std::string& refPath);
 	Reference(const std::string& refPath);
-	operator Node() const;
+	operator Tree() const;
 private:
-	Node node_;
+	Tree tree_;
 };
 
 } /* namespace swiftree */

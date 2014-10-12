@@ -5,7 +5,7 @@
  */
 
 #include "Reference.h"
-#include "Node.h"
+#include "Tree.h"
 #include "swiftree.h"
 
 #include <boost/algorithm/string/split.hpp>
@@ -27,20 +27,20 @@ Reference::Reference(const std::string& refPath) {
 	std::string fileType = list[1];
 	std::string fileName = list[2];
 	if (fileType == "xml") {
-		node_ = fromXml(fileName);
+		tree_ = fromXml(fileName);
 	} else if (fileType == "json") {
-		node_ = fromJson(fileName);
+		tree_ = fromJson(fileName);
 	} else {
 		throw std::runtime_error(list[1] + " is not a valid filetype");
 	}
 	if (list.size() > 3) {
 		std::string treePath = list[3];
-		node_ = node_.child(treePath);
+		tree_ = tree_.child(treePath);
 	}
 }
 
-Reference::operator Node() const {
-	return node_;
+Reference::operator Tree() const {
+	return tree_;
 }
 
 } /* namespace swiftree */

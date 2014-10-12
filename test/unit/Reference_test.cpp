@@ -6,7 +6,7 @@
 
 #include <gtest/gtest.h>
 
-//#include "Node.h"
+//#include "Tree.h"
 //#include "swiftree.h"
 //
 //using namespace ::swiftree;
@@ -22,5 +22,5 @@
 //};
 //
 //TEST_F(AReference, CanGetChildByExplicitGetter) {
-//	ASSERT_NO_THROW(node_.child("child"));
+//	ASSERT_NO_THROW(tree_.child("child"));
 //}

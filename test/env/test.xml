@@ -8,5 +8,6 @@
 		<reference>ref:json:test.json:one</reference>
 		<referenceXml>ref:xml:test.xml:root</referenceXml>
 		<referenceWithoutPath>ref:xml:test.xml</referenceWithoutPath>
+		<invalidReference>ref:invalid:test.xml</invalidReference>
 	</child>
 </root>

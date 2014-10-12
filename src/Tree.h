@@ -1,11 +1,11 @@
 /*
- * Node.h
+ * Tree.h
  *
  * Copyright (c) 2014, Alessandro Pezzato
  */
 
-#ifndef swiftree_NODE_H_
-#define swiftree_NODE_H_
+#ifndef swiftree_TREE_H_
+#define swiftree_TREE_H_
 
 #include "swiftree_fwd.h"
 
@@ -13,28 +13,28 @@
 
 namespace swiftree {
 
-class Node {
+class Tree {
 public:
 	/**
 	 * Default constructor
 	 */
-	Node();
+	Tree();
 	/**
 	 * Copy constructor
 	 */
-	Node(const Node& node);
+	Tree(const Tree& tree);
 	/**
 	 * Construct from boost property tree
 	 */
-	Node(const boost::property_tree::ptree& pt);
+	Tree(const boost::property_tree::ptree& pt);
 	/**
 	 * Destructor
 	 */
-	~Node();
+	~Tree();
 	/**
 	 * Copy operator
 	 */
-	Node& operator=(const Node& node);
+	Tree& operator=(const Tree& tree);
 	/**
 	 * Explicit direct value getter
 	 */
@@ -81,16 +81,16 @@ public:
 	/**
 	 * Explicit child getter
 	 */
-	Node child(const std::string& path) const;
+	Tree child(const std::string& path) const;
 	/**
 	 * Child getter
 	 */
-	Node operator[](const std::string& path) const;
-	Node operator[](const char* path) const;
+	Tree operator[](const std::string& path) const;
+	Tree operator[](const char* path) const;
 private:
 	boost::property_tree::ptree pt_;
 };
 
 } /* namespace swiftree */
 
-#endif /* swiftree_NODE_H_ */
+#endif /* swiftree_TREE_H_ */

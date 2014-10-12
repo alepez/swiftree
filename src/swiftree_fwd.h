@@ -14,7 +14,7 @@ enum FileType {
 	FILETYPE_JSON
 };
 
-class Node;
+class Tree;
 
 } /* namespace swiftree */
 
