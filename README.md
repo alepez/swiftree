@@ -5,6 +5,7 @@ Provides a concise way to access data inside xml and json from C++.
 ## Example:
 
 ```cpp
+    using ::swiftree::Tree;
     Tree cfg = fromXml("configuration.xml");
 ```
 
