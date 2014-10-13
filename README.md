@@ -52,14 +52,14 @@ The type is inferred by the default value.
 	auto theAnswer = tree.value("theAnswer", 42));
 ```
 
-Tree is automatically casted to any type:
+Tree is automatically cast to any type:
 
 ```cpp
 	Tree a = tree["speed"];
 	float value = a;
 ```
 
-Tree can be explicitly casted to any type: 
+Tree can be explicitly cast to any type: 
 
 ```cpp
 	auto b = a.to<float>();
