@@ -5,8 +5,8 @@ Provides a concise way to access data inside xml and json from C++.
 ## Example:
 
 ```cpp
-    using ::swiftree::Tree;
-    Tree cfg = fromXml("configuration.xml");
+    using swiftree::Tree;
+    Tree cfg = swiftree::fromXml("configuration.xml");
 ```
 
 Can access data directly with a dot-separated path:
