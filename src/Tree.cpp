@@ -47,4 +47,9 @@ Tree Tree::operator[](const char* path) const {
 	return this->child(path);
 }
 
+
+bool Tree::has(const std::string& path) const {
+	return pt_.count(path) > 0;
+}
+
 } /* namespace swiftree */

@@ -159,3 +159,16 @@ TEST_F(ATree, ThrowsIfInvalidReference) {
 	ASSERT_ANY_THROW(Tree refTree = tree_["child"]["invalidReference"]);
 }
 
+TEST_F(ATree, CanBeTestedForDefinedProperty) {
+	ASSERT_TRUE(tree_.has("int"));
+	ASSERT_FALSE(tree_.has("undefined"));
+}
+
+TEST_F(ATree, CanBeTestedForGoodCasting) {
+	ASSERT_TRUE(tree_.is<int>("int"));
+	ASSERT_TRUE(tree_.is<float>("int"));
+	ASSERT_TRUE(tree_.is<std::string>("int"));
+	ASSERT_FALSE(tree_.is<int>("name"));
+	ASSERT_FALSE(tree_.is<float>("name"));
+}
+

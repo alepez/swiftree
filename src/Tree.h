@@ -99,6 +99,23 @@ public:
 	 * \return a Tree from the specified path
 	 */
 	Tree operator[](const char* path) const;
+	/**
+	 * Test if tree has a property
+	 *
+	 * \param path the path
+	 * \return true if is defined
+	 */
+	bool has(const std::string& path) const;
+
+	template<class Type>
+	bool is(const std::string& path) const {
+		try {
+			pt_.get<Type>(path);
+			return true;
+		} catch (...) {
+			return false;
+		}
+	}
 private:
 	boost::property_tree::ptree pt_;
 };
