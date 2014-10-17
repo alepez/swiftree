@@ -142,11 +142,11 @@ struct Vector3 {
 namespace swiftree {
 template<>
 Tree::operator Vector3() const {
-	Vector3 ret;
-	ret.x = value<float>("x");
-	ret.y = value<float>("y");
-	ret.z = value<float>("z");
-	return ret;
+	Vector3 obj;
+	obj.x = value<float>("x");
+	obj.y = value<float>("y");
+	obj.z = value<float>("z");
+	return obj;
 }
 }
 ```
