@@ -122,7 +122,7 @@ You can check if a value is defined
 tree.has("speed");
 ```
 
-And if it can be casted to a type:
+And if it can be cast to a type:
 
 ```cpp
 tree.is<float>("speed"));
