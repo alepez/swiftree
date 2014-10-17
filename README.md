@@ -2,23 +2,32 @@
 
 Provides a concise way to access data inside xml and json from C++.
 
-## Example:
+## Usage
+
+### Load from file
 
 ```cpp
-    using swiftree::Tree;
-    Tree cfg = swiftree::fromXml("configuration.xml");
+using swiftree::Tree;
+Tree cfg = swiftree::fromXml("configuration.xml");
 ```
+
+```cpp
+using swiftree::Tree;
+Tree cfg = swiftree::fromJson("configuration.json");
+```
+
+### Access data
 
 Can access data directly with a dot-separated path:
 
 ```cpp
-    float speed = cfg["car.speed"];
+float speed = cfg["car.speed"];
 ```
 
 Or accessing nested elements using the brackets operator:
 
 ```cpp
-    float speed = cfg["car"]["speed"];
+float speed = cfg["car"]["speed"];
 ```
 
 Casting to the right type is done automatically, the type is
@@ -45,12 +54,16 @@ You can explicitly get a value from a child
 	auto direction = tree.value<int>("direction");
 ```
 
+### Default value
+
 You can set a default value that is returned if the child tree is undefined.
 The type is inferred by the default value.
 
 ```cpp
 	auto theAnswer = tree.value("theAnswer", 42));
 ```
+
+### Excplicit and implicit casting
 
 Tree is automatically cast to any type:
 
@@ -70,6 +83,8 @@ Even with default value:
 ```cpp
 	auto b = a.to(3.14);
 ```
+
+### Reference another tree
 
 A special "reference" tree can load data from another file (or part of it):
 
@@ -97,4 +112,47 @@ the tree loaded from guu.xml is attached to "foo.bar.dee" in the tree loaded by 
 ```cpp
 	std::string greeting = fromXml("bla.xml")["foo"]["bar"]["dee"]["meh"]["ooo"];
 	std::string greeting2 = fromXml("bla.xml")["foo"]["bar"]["hii"]["ooo"];
+```
+
+### Checking for existence and casting
+
+You can check if a value is defined
+
+```cpp
+tree.has("speed");
+```
+
+And if it can be casted to a type:
+
+```cpp
+tree.is<float>("speed"));
+```
+
+### Custom types
+
+You can define custom translation from a Tree to any class:
+
+```cpp
+struct Vector3 {
+	float x;
+	float y;
+	float z;
+};
+
+namespace swiftree {
+template<>
+Tree::operator Vector3() const {
+	Vector3 ret;
+	ret.x = value<float>("x");
+	ret.y = value<float>("y");
+	ret.z = value<float>("z");
+	return ret;
+}
+}
+```
+
+Now you can cast a Tree to your custom class:
+
+```cpp
+Vector3 position = tree_["position"];
 ```

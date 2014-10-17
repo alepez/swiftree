@@ -172,3 +172,27 @@ TEST_F(ATree, CanBeTestedForGoodCasting) {
 	ASSERT_FALSE(tree_.is<float>("name"));
 }
 
+struct Vector3 {
+	float x;
+	float y;
+	float z;
+};
+
+namespace swiftree {
+template<>
+Tree::operator Vector3() const {
+	Vector3 ret;
+	ret.x = value<float>("x");
+	ret.y = value<float>("y");
+	ret.z = value<float>("z");
+	return ret;
+}
+}
+
+TEST_F(ATree, CanCastToCustomTypes) {
+	Vector3 position = tree_["position"];
+	ASSERT_FLOAT_EQ(1.2, position.x);
+	ASSERT_FLOAT_EQ(2.3, position.y);
+	ASSERT_FLOAT_EQ(3.4, position.z);
+}
+

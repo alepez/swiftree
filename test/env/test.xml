@@ -10,4 +10,9 @@
 		<referenceWithoutPath>ref:xml:test.xml</referenceWithoutPath>
 		<invalidReference>ref:invalid:test.xml</invalidReference>
 	</child>
+	<position>
+		<x>1.2</x>
+		<y>2.3</y>
+		<z>3.4</z>
+	</position>
 </root>
