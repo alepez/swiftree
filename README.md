@@ -125,7 +125,7 @@ tree.has("speed");
 And if it can be cast to a type:
 
 ```cpp
-tree.is<float>("speed"));
+tree.is<float>("speed");
 ```
 
 ### Custom types
@@ -154,5 +154,5 @@ Tree::operator Vector3() const {
 Now you can cast a Tree to your custom class:
 
 ```cpp
-Vector3 position = tree_["position"];
+Vector3 position = tree["position"];
 ```
