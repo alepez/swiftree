@@ -126,7 +126,7 @@ And if it can be cast to a type:
 
 ```cpp
 Tree speed = tree["speed"]
-if (speed.is<float>("speed")) {
+if (speed.is<float>()) {
   /* speed can be cast to float */
 }
 ```
