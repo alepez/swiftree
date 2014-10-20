@@ -61,6 +61,11 @@ TEST_F(ATree, CanGetChildWithBrackets) {
 	ASSERT_NO_THROW(tree_["child"]);
 }
 
+TEST_F(ATree, CanGetChildWithBracketsUsingAString) {
+	std::string path = "child";
+	ASSERT_NO_THROW(tree_[path]);
+}
+
 TEST_F(ATree, CanGetFloatWithBrackets) {
 	float value = tree_["float"];
 	ASSERT_FLOAT_EQ(3.14, value);
@@ -164,12 +169,17 @@ TEST_F(ATree, CanBeTestedForDefinedProperty) {
 	ASSERT_FALSE(tree_.has("undefined"));
 }
 
-TEST_F(ATree, CanBeTestedForGoodCasting) {
-	ASSERT_TRUE(tree_.is<int>("int"));
-	ASSERT_TRUE(tree_.is<float>("int"));
-	ASSERT_TRUE(tree_.is<std::string>("int"));
-	ASSERT_FALSE(tree_.is<int>("name"));
-	ASSERT_FALSE(tree_.is<float>("name"));
+TEST_F(ATree, CanTestIfAChildCanBeCastToASpecificType) {
+	ASSERT_TRUE(tree_.has<int>("int"));
+	ASSERT_FALSE(tree_.has<int>("name"));
+}
+
+TEST_F(ATree, CanBeTestedForCasting) {
+	ASSERT_TRUE(tree_["int"].is<int>());
+	ASSERT_TRUE(tree_["int"].is<float>());
+	ASSERT_TRUE(tree_["int"].is<std::string>());
+	ASSERT_FALSE(tree_["name"].is<int>());
+	ASSERT_FALSE(tree_["name"].is<float>());
 }
 
 struct Vector3 {

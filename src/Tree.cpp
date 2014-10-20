@@ -18,7 +18,7 @@ Tree::Tree() :
 }
 
 Tree::~Tree() {
-
+	delete impl_;
 }
 
 Tree::Tree(const Tree& tree) :

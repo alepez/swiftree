@@ -116,7 +116,7 @@ the tree loaded from guu.xml is attached to "foo.bar.dee" in the tree loaded by 
 
 ### Checking for existence and casting
 
-You can check if a value is defined
+You can check if a child is defined
 
 ```cpp
 tree.has("speed");
@@ -125,8 +125,19 @@ tree.has("speed");
 And if it can be cast to a type:
 
 ```cpp
-tree.is<float>("speed");
+Tree speed = tree["speed"]
+if (speed.is<float>("speed")) {
+  /* speed can be cast to float */
+}
 ```
+
+You can also test if a child can be cast to a specific type:
+
+```cpp
+if (tree.has<float>("speed")) {
+  /* speed exists and can be cast to float */
+}
+``` 
 
 ### Custom types
 

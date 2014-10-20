@@ -41,7 +41,7 @@ public:
 	 */
 	Tree& operator=(const Tree& tree);
 	/**
-	 *
+	 * Get the string value, a shortcut to Tree::to<std::string>()
 	 */
 	std::string toString() const;
 	/**
@@ -81,7 +81,15 @@ public:
 		}
 	}
 	/**
-	 * Value getter
+	 * Implicit casting (direct value getter)
+	 *
+	 * Usage:
+	 *
+	 * \code
+	 * float speed = tree["speed"];
+	 * int count = tree["count"];
+	 * std::string name = tree["name];
+	 * \endcode
 	 */
 	template<class Type>
 	operator Type() const {
@@ -102,10 +110,7 @@ public:
 	 */
 	Tree operator[](const std::string& path) const;
 	/**
-	 * Child getter
-	 *
-	 * \param path a dot separated path
-	 * \return a Tree from the specified path
+	 * \copydoc child(const std::string& path) const
 	 */
 	Tree operator[](const char* path) const;
 	/**
@@ -115,11 +120,24 @@ public:
 	 * \return true if is defined
 	 */
 	bool has(const std::string& path) const;
-
+	/**
+	 * Test if tree has a property
+	 *
+	 * \param path the path
+	 * \return true if is defined
+	 */
 	template<class Type>
-	bool is(const std::string& path) const {
+	bool has(const std::string& path) const {
+		return this->has(path) && this->child(path).is<Type>();
+	}
+
+	/**
+	 * Test if can be cast to a specific type
+	 */
+	template<class Type>
+	bool is() const {
 		try {
-			boost::lexical_cast<Type>(this->child(path).toString());
+			boost::lexical_cast<Type>(this->toString());
 			return true;
 		} catch (...) {
 			return false;
