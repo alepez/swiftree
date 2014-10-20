@@ -6,6 +6,7 @@
 
 #include "swiftree.h"
 #include "Tree.h"
+#include "TreeImpl.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
@@ -18,13 +19,13 @@ namespace swiftree {
 Tree fromXml(const std::string& filename) {
 	ptree pt;
 	xml_parser::read_xml(filename, pt);
-	return Tree(pt);
+	return Tree(TreeImpl(pt));
 }
 
 Tree fromJson(const std::string& filename) {
 	ptree pt;
 	json_parser::read_json(filename, pt);
-	return Tree(pt);
+	return Tree(TreeImpl(pt));
 }
 
 } /* namespace swiftree */

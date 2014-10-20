@@ -5,16 +5,15 @@
  */
 
 #include "Tree.h"
+#include "TreeImpl.h"
 #include "Reference.h"
+
+#include <boost/property_tree/ptree.hpp>
 
 namespace swiftree {
 
-Tree::Tree() {
-
-}
-
-Tree::Tree(const boost::property_tree::ptree& pt) :
-				pt_(pt) {
+Tree::Tree() :
+				impl_(nullptr) {
 
 }
 
@@ -23,20 +22,30 @@ Tree::~Tree() {
 }
 
 Tree::Tree(const Tree& tree) :
-				pt_(tree.pt_) {
+				impl_(new TreeImpl(*tree.impl_)) {
+}
+
+Tree::Tree(const TreeImpl& impl) :
+				impl_(new TreeImpl(impl)) {
+
+}
+
+std::string Tree::toString() const {
+	return impl_->toString();
 }
 
 Tree& Tree::operator =(const Tree& tree) {
-	pt_ = tree.pt_;
+	delete impl_;
+	impl_ = new TreeImpl(*tree.impl_);
 	return *this;
 }
 
 Tree Tree::child(const std::string& path) const {
-	std::string strValue = pt_.get<std::string>(path);
+	std::string strValue = impl_->child(path).toString();
 	if (Reference::isReference(strValue)) {
 		return Reference(strValue);
 	}
-	return Tree(pt_.get_child(path));
+	return Tree(impl_->child(path));
 }
 
 Tree Tree::operator[](const std::string& path) const {
@@ -47,9 +56,8 @@ Tree Tree::operator[](const char* path) const {
 	return this->child(path);
 }
 
-
 bool Tree::has(const std::string& path) const {
-	return pt_.count(path) > 0;
+	return impl_->has(path);
 }
 
 } /* namespace swiftree */

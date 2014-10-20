@@ -9,7 +9,10 @@
 
 #include "swiftree_fwd.h"
 
-#include <boost/property_tree/ptree.hpp>
+#include <string>
+#include <memory>
+
+#include <boost/lexical_cast.hpp>
 
 namespace swiftree {
 
@@ -24,9 +27,11 @@ public:
 	 */
 	Tree(const Tree& tree);
 	/**
-	 * Construct from boost property tree
+	 * From implementation
+	 *
+	 * \attention internal use only
 	 */
-	Tree(const boost::property_tree::ptree& pt);
+	Tree(const TreeImpl& impl);
 	/**
 	 * Destructor
 	 */
@@ -36,11 +41,15 @@ public:
 	 */
 	Tree& operator=(const Tree& tree);
 	/**
+	 *
+	 */
+	std::string toString() const;
+	/**
 	 * Explicit direct value getter
 	 */
 	template<class Type>
 	Type to() const {
-		return pt_.get_value<Type>();
+		return boost::lexical_cast<Type>(this->toString());
 	}
 	/**
 	 * Explicit direct value getter with default value
@@ -48,7 +57,7 @@ public:
 	template<class Type>
 	Type to(Type defaultValue) const {
 		try {
-			return pt_.get_value<Type>();
+			return boost::lexical_cast<Type>(this->toString());
 		} catch (...) {
 			return defaultValue;
 		}
@@ -58,7 +67,7 @@ public:
 	 */
 	template<class Type>
 	Type value(const std::string& path) const {
-		return pt_.get<Type>(path);
+		return boost::lexical_cast<Type>(this->child(path).toString());
 	}
 	/**
 	 * Explicit child value getter with default value
@@ -66,7 +75,7 @@ public:
 	template<class Type>
 	Type value(const std::string& path, Type defaultValue) const {
 		try {
-			return pt_.get<Type>(path);
+			return boost::lexical_cast<Type>(this->child(path).toString());
 		} catch (...) {
 			return defaultValue;
 		}
@@ -76,7 +85,7 @@ public:
 	 */
 	template<class Type>
 	operator Type() const {
-		return pt_.get_value<Type>();
+		return boost::lexical_cast<Type>(this->toString());
 	}
 	/**
 	 * Explicit child getter
@@ -110,14 +119,14 @@ public:
 	template<class Type>
 	bool is(const std::string& path) const {
 		try {
-			pt_.get<Type>(path);
+			boost::lexical_cast<Type>(this->child(path).toString());
 			return true;
 		} catch (...) {
 			return false;
 		}
 	}
 private:
-	boost::property_tree::ptree pt_;
+	TreeImpl* impl_;
 };
 
 } /* namespace swiftree */

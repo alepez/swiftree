@@ -15,6 +15,7 @@ enum FileType {
 };
 
 class Tree;
+class TreeImpl;
 
 } /* namespace swiftree */
 
