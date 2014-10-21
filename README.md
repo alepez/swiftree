@@ -24,14 +24,14 @@ Can access data directly with a dot-separated path:
 float speed = cfg["car.speed"];
 ```
 
-Or accessing nested elements using the brackets operator:
+...or accessing nested elements using the brackets operator:
 
 ```cpp
 float speed = cfg["car"]["speed"];
 ```
 
 Casting to the right type is done automatically, the type is
-determined by the variable to which the value is assigned.
+deduced by the variable to which the value is assigned.
 
 See `test/unit/Tree_test.cpp` for examples.
 
