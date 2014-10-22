@@ -18,13 +18,13 @@ Tree cfg = swiftree::fromJson("configuration.json");
 
 ### Access data
 
-Can access data directly with a dot-separated path:
+You can access data directly with a dot-separated path
 
 ```cpp
 float speed = cfg["car.speed"];
 ```
 
-...or accessing nested elements using the brackets operator:
+...or using the square brackets operator:
 
 ```cpp
 float speed = cfg["car"]["speed"];
