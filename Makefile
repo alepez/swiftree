@@ -105,6 +105,7 @@ dist: libraries $(HEADERS_DIST)
 ## doc
 doc:
 	doxygen
+	@echo "open with browser: file://$(shell realpath doc/html/index.html)"
 
 ## clean libraries and executables
 clean:
