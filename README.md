@@ -167,3 +167,12 @@ Now you can cast a Tree to your custom class:
 ```cpp
 Vector3 position = tree["position"];
 ```
+## Testing
+
+For unit testing, swiftree needs [Google Test](https://code.google.com/p/googletest/).
+
+    make test
+
+For coverage testing, swiftree needs [lcov](http://ltp.sourceforge.net/coverage/lcov.php) and has to be compiled in DEBUG mode. Remember to `make clean` if it has already been compiled without DEBUG flag.
+
+    make DEBUG=1 coverage
