@@ -7,8 +7,8 @@
 #ifndef swiftree_REFERENCE_H_
 #define swiftree_REFERENCE_H_
 
-#include "swiftree_fwd.h"
-#include "Tree.h"
+#include "../swiftree_fwd.h"
+#include "../Tree.h"
 
 #include <string>
 

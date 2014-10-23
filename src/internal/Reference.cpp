@@ -5,8 +5,8 @@
  */
 
 #include "Reference.h"
-#include "Tree.h"
-#include "swiftree.h"
+#include "../Tree.h"
+#include "../swiftree.h"
 
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string.hpp>

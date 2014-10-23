@@ -9,11 +9,6 @@
 
 namespace swiftree {
 
-enum FileType {
-	FILETYPE_XML,
-	FILETYPE_JSON
-};
-
 class Tree;
 class TreeImpl;
 

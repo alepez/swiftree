@@ -57,6 +57,10 @@ TEST_F(ATree, ThrowsIfNotDefinedAndWithoutDefault) {
 	ASSERT_ANY_THROW(tree_["undefined"]);
 }
 
+TEST_F(ATree, DoesNotThrowIfNotDefinedAndWithDefaultValue) {
+	ASSERT_EQ(5, tree_.value("undefined", 5));
+}
+
 TEST_F(ATree, CanGetChildWithBrackets) {
 	ASSERT_NO_THROW(tree_["child"]);
 }

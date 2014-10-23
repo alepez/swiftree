@@ -6,7 +6,7 @@
 
 #include "swiftree.h"
 #include "Tree.h"
-#include "TreeImpl.h"
+#include "internal/TreeImpl.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>

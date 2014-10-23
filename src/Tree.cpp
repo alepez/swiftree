@@ -5,8 +5,8 @@
  */
 
 #include "Tree.h"
-#include "TreeImpl.h"
-#include "Reference.h"
+#include "internal/TreeImpl.h"
+#include "internal/Reference.h"
 
 #include <boost/property_tree/ptree.hpp>
 
