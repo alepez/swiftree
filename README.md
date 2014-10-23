@@ -167,6 +167,11 @@ Now you can cast a Tree to your custom class:
 ```cpp
 Vector3 position = tree["position"];
 ```
+## Build and install
+
+Just build with `make dist` so libraries and headers will be generated in `dist` directory inside the
+project. Add the `dist/include/swiftree` directory to your own project and link to the library in `dist/lib/`.
+
 ## Testing
 
 For unit testing, swiftree needs [Google Test](https://code.google.com/p/googletest/).
