@@ -9,8 +9,6 @@ before_install:
  - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
 script: "make DEBUG=1 test"
 notifications:
-  recipients:
-    - alessandro.pezzato@gmail.com
   email:
     on_success: change
     on_failure: change
