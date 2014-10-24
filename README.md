@@ -2,6 +2,8 @@
 
 Provides a concise way to access data inside xml and json from C++.
 
+[Why I've started this project](http://pezzato.net/2014/10/swiftree-reading-values-concisely-from-tree-data-structures.html)
+
 ## Usage
 
 ### Load from file
